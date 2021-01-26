@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head> </head>
+
+<body>
+  <script>
+    function getHighestFromUsername(username) {
+      var username = document.getElementById("usernameinput").value;
+      var url = "https://us-central1-atcoderusersapi.cloudfunctions.net/api/info/username/" + username;
+      fetch(url)
+        .then(function (data) {
+          return data.json();
+        })
+        .then(function (json) {
+          console.log(json);
+          document.getElementById("highestviewer").innerHTML = json.data.highest_rating;
+        });
+    }
+  </script>
+
+  <input type="text" id="usernameinput" />
+  <input type="button" value="GetHighest" onclick="getHighestFromUsername()" />
+
+  <p id="highestviewer">type username</p>
+</body>
+
+</html>
